@@ -1,0 +1,24 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+      - "9001:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./index.html:/etc/nginx/html/index.html
+    networks:
+      - assignment3
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: task2goapp
+    networks:
+      - assignment3
+
+networks:
+  assignment3:
+
